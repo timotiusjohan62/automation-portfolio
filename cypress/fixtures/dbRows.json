@@ -1,0 +1,74 @@
+[
+  {
+    "ID": 1,
+    "TEST_CASE_NAME": "Get Product List",
+    "TITLE": "Fetch all products",
+    "STEP_ORDER": 1,
+    "TYPE": "GET",
+    "PATH": "/products?limit=10&offset=1",
+    "PAYLOAD": null,
+    "EXTRACT_KEY": null,
+    "EXPECTED_SCHEMA": "[\n  {\n    \"id\": 2,\n    \"title\": \"Classic Red Pullover Hoodie\",\n    \"slug\": \"classic-red-pullover-hoodie\",\n    \"price\": 10,\n    \"description\": \"Elevate your casual wardrobe with our Classic Red Pullover Hoodie. Crafted with a soft cotton blend for ultimate comfort, this vibrant red hoodie features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs for a snug fit. The timeless design ensures easy pairing with jeans or joggers for a relaxed yet stylish look, making it a versatile addition to your everyday attire.\",\n    \"category\": {\n      \"id\": 1,\n      \"name\": \"Clothes\",\n      \"slug\": \"clothes\",\n      \"image\": \"https://i.imgur.com/QkIa5tT.jpeg\",\n      \"creationAt\": \"2026-09-23T06:05:10.000Z\",\n      \"updatedAt\": \"2026-09-23T06:05:10.000Z\"\n    },\n    \"images\": [\n      \"https://i.imgur.com/1twoaDy.jpeg\",\n      \"https://i.imgur.com/FDwQgLy.jpeg\",\n      \"https://i.imgur.com/kg1ZhhH.jpeg\"\n    ],\n    \"creationAt\": \"2026-09-23T06:05:10.000Z\",\n    \"updatedAt\": \"2026-09-23T06:05:10.000Z\"\n  }\n]",
+    "EXPECTED_STATUS": 200
+  },
+  {
+    "ID": 2,
+    "TEST_CASE_NAME": "Product Lifecycle",
+    "TITLE": "Create a product",
+    "STEP_ORDER": 1,
+    "TYPE": "POST",
+    "PATH": "/products",
+    "PAYLOAD": "{\n  \"title\": \"JOHAN TEST LAGI 3\",\n  \"price\": 10,\n  \"description\": \"string\",\n  \"categoryId\": 1,\n  \"images\": [\n    \"http://example.com\"\n  ]\n}",
+    "EXTRACT_KEY": "{\n  \"newProductId\": \"id\",\n  \"newCategory\": \"category.id\",\n  \"newSlug\": \"slug\",\n  \"newProductName\": \"title\"\n}",
+    "EXPECTED_SCHEMA": "{\n  \"id\": 108,\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"price\": 10,\n  \"description\": \"string\",\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Clothes\",\n    \"slug\": \"clothes\",\n    \"image\": \"https://i.imgur.com/QkIa5tT.jpeg\",\n    \"creationAt\": \"2026-09-23T06:05:10.000Z\",\n    \"updatedAt\": \"2026-09-23T06:05:10.000Z\"\n  },\n  \"images\": [\n    \"http://example.com\"\n  ],\n  \"creationAt\": \"2026-09-23T08:27:00.000Z\",\n  \"updatedAt\": \"2026-09-23T08:27:00.000Z\"\n}",
+    "EXPECTED_STATUS": 201
+  },
+  {
+    "ID": 3,
+    "TEST_CASE_NAME": "Product Lifecycle",
+    "TITLE": "Read the product",
+    "STEP_ORDER": 2,
+    "TYPE": "GET",
+    "PATH": "/products/{{newProductId}}",
+    "PAYLOAD": null,
+    "EXTRACT_KEY": null,
+    "EXPECTED_SCHEMA": "{\n  \"id\": 108,\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"price\": 10,\n  \"description\": \"string\",\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Clothes\",\n    \"slug\": \"clothes\",\n    \"image\": \"https://i.imgur.com/QkIa5tT.jpeg\",\n    \"creationAt\": \"2026-09-23T06:05:10.000Z\",\n    \"updatedAt\": \"2026-09-23T06:05:10.000Z\"\n  },\n  \"images\": [\n    \"http://example.com\"\n  ],\n  \"creationAt\": \"2026-09-23T08:27:00.000Z\",\n  \"updatedAt\": \"2026-09-23T08:27:00.000Z\"\n}",
+    "EXPECTED_STATUS": 200
+  },
+  {
+    "ID": 4,
+    "TEST_CASE_NAME": "Product Lifecycle",
+    "TITLE": "Update product",
+    "STEP_ORDER": 3,
+    "TYPE": "PUT",
+    "PATH": "/products/{{newProductId}}",
+    "PAYLOAD": "{\n  \"title\": \"JOHAN TEST UPDATE LAGI 3\",\n  \"price\": 10,\n  \"description\": \"{{newSlug}}\",\n  \"categoryId\": {{newCategory}},\n  \"images\": [\n    \"http://example.com\"\n  ]\n}",
+    "EXTRACT_KEY": null,
+    "EXPECTED_SCHEMA": "{\n  \"id\": 108,\n  \"title\": \"string\",\n  \"slug\": \"string\",\n  \"price\": 10,\n  \"description\": \"string\",\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Clothes\",\n    \"slug\": \"clothes\",\n    \"image\": \"https://i.imgur.com/QkIa5tT.jpeg\",\n    \"creationAt\": \"2026-09-23T06:05:10.000Z\",\n    \"updatedAt\": \"2026-09-23T06:05:10.000Z\"\n  },\n  \"images\": [\n    \"http://example.com\"\n  ],\n  \"creationAt\": \"2026-09-23T08:27:00.000Z\",\n  \"updatedAt\": \"2026-09-23T08:27:00.000Z\"\n}",
+    "EXPECTED_STATUS": 200
+  },
+  {
+    "ID": 5,
+    "TEST_CASE_NAME": "Product Lifecycle",
+    "TITLE": "Delete product",
+    "STEP_ORDER": 4,
+    "TYPE": "DELETE",
+    "PATH": "/products/{{newProductId}}",
+    "PAYLOAD": null,
+    "EXTRACT_KEY": null,
+    "EXPECTED_SCHEMA": null,
+    "EXPECTED_STATUS": 200
+  },
+  {
+    "ID": 6,
+    "TEST_CASE_NAME": "Invalid Login",
+    "TITLE": "Missing password",
+    "STEP_ORDER": 1,
+    "TYPE": "POST",
+    "PATH": "/auth/login",
+    "PAYLOAD": "{\"username\":\"test@qa.com\"}",
+    "EXTRACT_KEY": null,
+    "EXPECTED_SCHEMA": null,
+    "EXPECTED_STATUS": 401
+  }
+]
