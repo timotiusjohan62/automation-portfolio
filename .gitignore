@@ -9,7 +9,6 @@ pnpm-debug.log*
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
-cypress/support/credentials.json
 
 # Cypress cache
 .cypress/
